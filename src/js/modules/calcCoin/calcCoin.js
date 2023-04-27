@@ -2,8 +2,6 @@ import requests from '../requests/requsts.js'
 
 const calcCoin = (coinsObjects) => {
   const currencyCoins = coinsObjects.map((value) => value.currency);
-  let currentCryptoValue = null;
-
   const cardsCoins = document.querySelectorAll('.options-crypto__card');
 
   const cryptoSet = document.querySelector('.crypto-set'),
@@ -17,18 +15,14 @@ const calcCoin = (coinsObjects) => {
     getIconCurrency = cryptoGet.querySelector('.crypto-set__icon-img'),
     getCurrencyValueName = cryptoGet.querySelector('.crypto-set__value-name');
 
-
+  let currentCryptoValue = null;
   let trigerActiveCureency = null;
-
-
 
   cardsCoins.forEach(card => card.addEventListener('click', function () { setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency')) }));
 
 
   setInputCurrency.addEventListener('input', function () {
-    getInputCurrency.value = 0;
-
-    calcValue(this.value, Object.keys(currentCryptoValue).find(kay => (kay === trigerActiveCureency) ? currentCryptoValue[kay] : null));
+    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency]);;
   })
 
 
