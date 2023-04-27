@@ -8,7 +8,8 @@ const calcCoin = (coinsObjects) => {
     setInputCurrency = cryptoSet.querySelector('.entryCurrency'),
     setNameCurrency = cryptoSet.querySelector('.crypto-set__name-title'),
     setIconCurrency = cryptoSet.querySelector('.crypto-set__icon-img'),
-    setCurrencyValueName = cryptoSet.querySelector('.crypto-set__value-name')
+    setCurrencyValueName = cryptoSet.querySelector('.crypto-set__value-name'),
+    exchangeRate = cryptoSet.querySelector('.crypto-set__real-curs');
   const cryptoGet = document.querySelector('.crypto-get'),
     getInputCurrency = cryptoGet.querySelector('.outputCurrency'),
     getNameCurrency = cryptoGet.querySelector('.crypto-set__name-title'),
@@ -18,11 +19,16 @@ const calcCoin = (coinsObjects) => {
   let currentCryptoValue = null;
   let trigerActiveCureency = null;
 
-  cardsCoins.forEach(card => card.addEventListener('click', function () { setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency')) }));
+  cardsCoins.forEach(card => card.addEventListener('click', function () {
+    setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency'));
 
+    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency]);
+
+    exchangeRate.innerHTML = `Rate: <span>1 ${coinsObjects[this.getAttribute('data-kay')].currency} = ${currentCryptoValue[trigerActiveCureency]} ${trigerActiveCureency}</span>`;
+  }));
 
   setInputCurrency.addEventListener('input', function () {
-    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency]);;
+    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency]);
   })
 
 
@@ -36,7 +42,7 @@ const calcCoin = (coinsObjects) => {
 
       requests(currency, new String(currencyCoins)).then(response => {
         currentCryptoValue = response;
-        // console.log(response);
+
       }).catch(err => console.log(err))
 
     } else {

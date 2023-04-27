@@ -1,6 +1,11 @@
 const setCardHTML = (obj) => {
   const getParentCoinСost = document.querySelector('.options-crypto__from'),
     getCurrencyCoins = document.querySelector('.options-crypto__to');
+  const randomNumverSum = document.querySelector('.crypto-get .crypto-set__real-curs');
+
+  const randomReserves = () => {
+    return Math.floor(Math.random() * 9001) + 1000;
+  }
 
   obj.forEach(({ id, name, currency, srcImg }) => {
     getParentCoinСost.innerHTML += `
@@ -24,7 +29,9 @@ const setCardHTML = (obj) => {
             <div class="options-crypto__card-value">${currency}</div>
           </div>
     `;
-  })
+  });
+
+  setInterval(() => randomNumverSum.innerHTML = `Reserves: 1632${randomReserves()}`, 5000)
 }
 
 export default setCardHTML;
