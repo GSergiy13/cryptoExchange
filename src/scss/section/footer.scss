@@ -1,0 +1,30 @@
+.footer {
+    // height: 5vh;
+    padding: 17px 0;
+    background: rgba(0,0,0,.13);
+
+    .container {
+      height: 100%;
+    }
+
+    &__wrapper {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    &__info {
+      &-year {
+        color: #4682b1;
+        font-size: 12px;
+      }
+    }
+
+    &__support {
+      &-link {
+        color: #4682b1;
+        font-size: 12px;
+      }
+    }
+}
