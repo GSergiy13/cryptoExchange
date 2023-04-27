@@ -4,5 +4,5 @@ import calcCoin from './modules/calcCoin/calcCoin.js';
 
 window.addEventListener('DOMContentLoaded', function () {
   setCardHTML(coinsObjects);
-  calcCoin()
+  calcCoin(coinsObjects)
 });
