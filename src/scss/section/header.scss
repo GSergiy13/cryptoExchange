@@ -1,7 +1,14 @@
 .header {
-  padding: 10px 0;
+  height: 5vh;
+  padding: 4px 0;
   background: rgba(0,0,0,.13);
+
+      .container {
+      height: 100%;
+    }
+
   &__wrapper {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +17,7 @@
 
   .logo {
     width: 100%;
-    max-width: 40px;
+    max-width: 30px;
 
     &__img {
       display: block;
@@ -21,5 +28,7 @@
   .menu {
     display: flex;
     gap: 15px;
+
+    font-size: 12px;
   }
 }

@@ -88,5 +88,5 @@ export default [
     name: 'Tether BEP20',
     currency: 'USDT',
     srcImg: '../img/icons-coin/tetherbep.svg'
-  },
+  }
 ];
