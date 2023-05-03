@@ -20,29 +20,29 @@
 	<header class="header">
 		<div class="container">
 			<div class="header__wrapper">
-				<div class="logo">
+				<a class="logo" href="./">
 					<img class="logo__img" src="@img/logo.png" alt="logo">
-				</div>
+				</a>
 				<nav>
 					<ul class="menu">
 						<li class="menu__item">
 							<a href="#" class="menu__item-link">
-								ДОМ
+								HOME
 							</a>
 						</li>
 						<li class="menu__item">
 							<a href="#" class="menu__item-link">
-								БЛОГ
+								BLOG
 							</a>
 						</li>
 						<li class="menu__item">
 							<a href="#" class="menu__item-link">
-								НОРМАТИВНО-ПРАВОВЫЕ АКТЫ
+								REGULATIONS
 							</a>
 						</li>
 						<li class="menu__item">
 							<a href="#" class="menu__item-link">
-								КОНТАКТЫ
+								CONTACTS
 							</a>
 						</li>
 					</ul>
@@ -60,7 +60,7 @@
 							<div class="crypto-set__head">
 								<div class="crypto-set__name">
 									<div class="crypto-set__name-subtitle">
-										Давать
+										Give
 									</div>
 									<div class="crypto-set__name-title">
 										Tether ERC20
@@ -95,7 +95,7 @@
 							<div class="crypto-set__head">
 								<div class="crypto-set__name">
 									<div class="crypto-set__name-subtitle">
-										Получать
+										Receive
 									</div>
 									<div class="crypto-set__name-title">
 										Tether ERC20
@@ -133,18 +133,34 @@
 					</div>
 				</div>
 
-				<div class="order-form">
-					<h2 class="order-form__title">
-						ЗАЯВКА НА ОБМЕН
-					</h2>
-					<form action="#" class="form">
-						<input class="form__input" type="text" name="adress" placeholder="Adress" required>
-						<input class="form__input" type="email" name="email" placeholder="Email - address" required>
-						<p class="form__desc">
-							Я прочитал Условия использования и принимаю Пользовательское соглашение
-						</p>
-						<button class="form__btn" type="submit">Отправить</button>
-					</form>
+				<div class="order-call">
+					<div class="order-form">
+						<h2 class="order-form__title">
+							Exchange request
+						</h2>
+						<form action="#" class="form">
+							<input class="form__input" type="text" name="adress" placeholder="Adress" required>
+							<input class="form__input" type="email" name="email" placeholder="Email - address" required>
+							<p class="form__desc">
+								I have read the Terms of Service and accept the User Agreement
+							</p>
+							<button class="form__btn" type="submit">Go to exchange</button>
+						</form>
+					</div>
+
+					<div class="order-info">
+						<ul class="order-info__list">
+							<li class="order-info__list-item">
+								The system fixes the rate and initiates the payment after the 4th confirmation of the transaction in the
+								network.
+							</li>
+							<li class="order-info__list-item">
+								If the amount to be paid out exceeds the set limit for a single transaction - 40000.00 USDT, in this
+								case the system
+								will send several payments in multiples of the set limit.
+							</li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>

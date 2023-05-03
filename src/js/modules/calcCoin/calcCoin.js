@@ -1,4 +1,5 @@
 import requests from '../requests/requsts.js'
+
 const calcCoin = coinsObjects => {
   const currencyCoins = coinsObjects.map((value) => value.currency);
   const formPayment = document.querySelector('form');
@@ -20,15 +21,16 @@ const calcCoin = coinsObjects => {
   let trigerActiveCureency = null;
 
   cardsCoins.forEach(card => card.addEventListener('click', function () {
+
     setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency'));
 
-    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency], 0.05);
+    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency], 0.05).toFixed(5);
 
     exchangeRate.innerHTML = `Rate: <span>1 ${coinsObjects[this.getAttribute('data-kay')].currency} = ${currentCryptoValue[trigerActiveCureency]} ${trigerActiveCureency}</span>`;
   }));
 
   setInputCurrency.addEventListener('input', function () {
-    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency], 0.05);
+    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency], 0.05).toFixed(5);
   })
 
   function setInfoCoin({ name, currency, srcImg }, passage) {
@@ -61,13 +63,25 @@ const calcCoin = coinsObjects => {
     window.location = url;
   }
 
-
-
   if (formPayment) {
     formPayment.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      setVariables([["name", 'dkljfnvndkfemdo'], ["age", 29], ['price', 23232323232232]]);
+      const formPaymentInputMail = document.querySelector('form input[name="email"]').value;
+      const formPaymentInputAdrees = document.querySelector('form input[name="adress"]').value;
+
+      setVariables([
+        ["adress", formPaymentInputAdrees],
+        ["email", formPaymentInputMail],
+        ['toValue', setInputCurrency.value],
+        ['toCurrency', setCurrencyValueName.outerText],
+        ['toCurrencyIconURL', setIconCurrency.src],
+        ['rate', exchangeRate.outerText],
+        ['orderId', Math.floor(Math.random() * 100001) + 50000],
+        ['getValue', getInputCurrency.value],
+        ['getCurrency', getCurrencyValueName.outerText],
+        ['getCurrencyIconURL', getIconCurrency.src],
+      ]);
     })
   }
 
