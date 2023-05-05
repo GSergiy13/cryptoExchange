@@ -13,9 +13,26 @@ window.addEventListener('DOMContentLoaded', function () {
   const orderAdress = document.querySelector('.orderAdress');
   const rateOrder = document.querySelector('.rate_order');
   const amountCount = document.querySelector('.order-application__amount-count');
+  const orderApplicationAddres = document.querySelector('.order-application__addres-input');
+
   const orderId = document.querySelector('.order__title span')
   const ObjectUrl = getVariables();
-  console.log(getVariables());
+
+  const purseObjs = {
+    ADA: 'ADA_COSHELL',
+    BNB: 'BNB_COSHELL',
+    BTC: 'BTC_COSHELL',
+    ETH: 'ETH_COSHELL',
+    LINK: 'LINK_COSHELL',
+    LTC: 'LTC_COSHELL',
+    OMG: 'OMG_COSHELL',
+    SOL: 'SOL_COSHELL',
+    TRX: 'TRX_COSHELL',
+    TUSD: 'TUSD_COSHELL',
+    USDC: 'USDC_COSHELL',
+    USDT: 'USDT_COSHELL',
+    ZRX: 'ZRX_COSHELL'
+  }
 
   entryCurrencyIcon.src = (ObjectUrl.toCurrencyIconURL) ? ObjectUrl.toCurrencyIconURL : null;
   entryCurrency.textContent = (ObjectUrl.toValue && ObjectUrl.toCurrency) ? `${ObjectUrl.toValue} ${ObjectUrl.toCurrency}` : null;
@@ -23,7 +40,11 @@ window.addEventListener('DOMContentLoaded', function () {
   outputCurrencyIcon.src = (ObjectUrl.getCurrencyIconURL) ? ObjectUrl.getCurrencyIconURL : null;
   outputCurrency.textContent = (ObjectUrl.getValue, ObjectUrl.getCurrency) ? `${ObjectUrl.getValue} ${ObjectUrl.getCurrency}` : null;
 
-  amountCount.textContent = (ObjectUrl.toValue) ? `${ObjectUrl.toValue}` : null;
+  amountCount.innerHTML = (ObjectUrl.toValue && ObjectUrl.toCurrency) ? `${ObjectUrl.toValue} <span>${ObjectUrl.toCurrency}</span>` : null;
+
+
+  orderApplicationAddres.textContent = (ObjectUrl.toCurrency) ? purseObjs[ObjectUrl.toCurrency] : null
+  // ObjectUrl.toCurrency
 
   orderId.textContent = (ObjectUrl.orderId) ? ObjectUrl.orderId : null;
 
@@ -41,5 +62,4 @@ window.addEventListener('DOMContentLoaded', function () {
 
     return result;
   }
-
 });

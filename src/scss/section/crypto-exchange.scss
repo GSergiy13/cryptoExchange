@@ -241,3 +241,70 @@
     }
 
   }
+
+
+
+@media screen and (max-width: 992px) {
+  .crypto-exchange {
+    height: auto;
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    .calc-crypto {
+      max-width:  100%;
+    }
+    .order-call {
+      max-width: 100%;
+      margin-top: 30px;
+    }
+
+    .options-crypto {
+         &__from, &__to {
+            padding: 15px 25px;
+          }
+    }       
+  }
+}
+
+
+@media screen and (max-width: 568px) {
+  .crypto-exchange {
+    height: auto;
+
+    .calc-value {
+      flex-direction: column;
+      gap: 450px;
+
+      .arrow {
+        display: none;
+        top: 46%;
+        transform: translate(-50%, 0%) rotate(90deg);
+      }
+      
+      .crypto-set, .crypto-get {
+        width: 100%;
+        max-width: 100%;
+       }
+    }
+
+    .options-crypto {
+      flex-direction: column;
+      gap: 265px;
+
+      &__from {
+    margin-top: -692px;
+    
+}
+         &__from, &__to {
+          max-width: 100%;
+    position: relative;
+    z-index: 100;
+        min-height: 422px;
+    max-height: 422px;
+
+         }
+    }
+  }
+}

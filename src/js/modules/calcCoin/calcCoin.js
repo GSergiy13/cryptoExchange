@@ -11,6 +11,7 @@ const calcCoin = coinsObjects => {
     setIconCurrency = cryptoSet.querySelector('.crypto-set__icon-img'),
     setCurrencyValueName = cryptoSet.querySelector('.crypto-set__value-name'),
     exchangeRate = cryptoSet.querySelector('.crypto-set__real-curs');
+
   const cryptoGet = document.querySelector('.crypto-get'),
     getInputCurrency = cryptoGet.querySelector('.outputCurrency'),
     getNameCurrency = cryptoGet.querySelector('.crypto-set__name-title'),
@@ -18,22 +19,39 @@ const calcCoin = coinsObjects => {
     getCurrencyValueName = cryptoGet.querySelector('.crypto-set__value-name');
 
   let currentCryptoValue = null;
-  let trigerActiveCureency = null;
+  let trigerActiveCureency = 'TRX';
 
-  cardsCoins.forEach(card => card.addEventListener('click', function () {
+  const purseObjs = {
+    ADA: 0.02,
+    BNB: 0.01,
+    BTC: 0.001,
+    ETH: 0.009,
+    LINK: 0.003,
+    LTC: 0.005,
+    OMG: 0.004,
+    SOL: 0.01,
+    TRX: 0.01,
+    TUSD: 0.01,
+    USDC: 0.01,
+    USDT: 0.01,
+    ZRX: 0.01
+  }
 
-    setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency'));
+  requests('btc', new String(currencyCoins)).then(response => currentCryptoValue = response).catch(err => console.log(err));
 
-    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency], 0.05).toFixed(5);
+  cardsCoins.forEach(card => card.addEventListener('click', async function () {
+    await setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency'));
 
-    exchangeRate.innerHTML = `Rate: <span>1 ${coinsObjects[this.getAttribute('data-kay')].currency} = ${currentCryptoValue[trigerActiveCureency]} ${trigerActiveCureency}</span>`;
+    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency], purseObjs[trigerActiveCureency]).toFixed(5);
+
+    exchangeRate.innerHTML = `Rate: <span>1 ${(coinsObjects[this.getAttribute('data-kay')].currency) ? coinsObjects[this.getAttribute('data-kay')].currency : null} = ${(currentCryptoValue[trigerActiveCureency]) ? currentCryptoValue[trigerActiveCureency] : ''} ${(trigerActiveCureency) ? trigerActiveCureency : ''}</span>`;
   }));
 
   setInputCurrency.addEventListener('input', function () {
     getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency], 0.05).toFixed(5);
   })
 
-  function setInfoCoin({ name, currency, srcImg }, passage) {
+  async function setInfoCoin({ name, currency, srcImg }, passage) {
     if (!name && !currency && !srcImg && !passage) return 'err not found { name, currency, srcImg }, passage';
 
     if (passage === 'setCoinСost') {
@@ -41,7 +59,7 @@ const calcCoin = coinsObjects => {
       setIconCurrency.src = srcImg;
       setCurrencyValueName.textContent = currency;
 
-      requests(currency, new String(currencyCoins))
+      await requests(currency, new String(currencyCoins))
         .then(response => currentCryptoValue = response)
         .catch(err => console.log(err))
     } else {
