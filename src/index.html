@@ -5,9 +5,9 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/logo.png" type="image/x-icon">
+	<link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
+	<link rel="apple-touch-icon" href="img/logo.png" type="image/x-icon">
 	<meta name="description" content="Опис в поісковику...">
 	<meta name="keywords" content="Ключові слова поска">
 	<title>Криптообменик</title>
@@ -16,6 +16,13 @@
 </head>
 
 <body>
+	<div class="placeholder">
+		<div class="loaders">
+			<div class="loader loader1">
+				<span></span>
+			</div>
+		</div>
+	</div>
 
 	<header class="header">
 		<div class="container">
@@ -26,11 +33,11 @@
 				<nav>
 					<ul class="menu">
 						<li class="menu__item">
-							<a href="#" class="menu__item-link">
+							<a href="./" class="menu__item-link">
 								HOME
 							</a>
 						</li>
-						<li class="menu__item">
+						<!-- <li class="menu__item">
 							<a href="#" class="menu__item-link">
 								BLOG
 							</a>
@@ -39,9 +46,9 @@
 							<a href="#" class="menu__item-link">
 								REGULATIONS
 							</a>
-						</li>
+						</li> -->
 						<li class="menu__item">
-							<a href="#" class="menu__item-link">
+							<a href="./contacts.html" class="menu__item-link">
 								CONTACTS
 							</a>
 						</li>
@@ -73,8 +80,7 @@
 
 							<div class="crypto-set__middle">
 								<div class="crypto-set__value">
-									<input maxlength="12" pattern="\d [0-9]" class="crypto-set__value-input entryCurrency" type="text"
-										value="1">
+									<input maxlength="12" class="crypto-set__value-input entryCurrency" type="text" value="0.0">
 									<p class="crypto-set__value-name">BTC</p>
 								</div>
 							</div>
@@ -109,7 +115,7 @@
 							<div class="crypto-set__middle">
 								<div class="crypto-set__value">
 									<input maxlength="12" pattern="\d [0-9]" class="crypto-set__value-input outputCurrency" type="text"
-										value="0">
+										readonly value="0">
 									<p class="crypto-set__value-name">TRX</p>
 								</div>
 							</div>

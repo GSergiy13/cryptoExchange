@@ -62,4 +62,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
     return result;
   }
+
+
+  window.addEventListener('load', function () {
+    document.querySelector('.placeholder').classList.add('off')
+  });
+
 });

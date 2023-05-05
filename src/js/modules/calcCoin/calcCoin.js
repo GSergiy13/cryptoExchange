@@ -19,7 +19,8 @@ const calcCoin = coinsObjects => {
     getCurrencyValueName = cryptoGet.querySelector('.crypto-set__value-name');
 
   let currentCryptoValue = null;
-  let trigerActiveCureency = 'TRX';
+  let trigerActiveCureencyGet = 'TRX';
+  let trigerActiveCureencyGetSet = 'BTC';
 
   const purseObjs = {
     ADA: 0.02,
@@ -42,13 +43,16 @@ const calcCoin = coinsObjects => {
   cardsCoins.forEach(card => card.addEventListener('click', async function () {
     await setInfoCoin(coinsObjects[this.getAttribute('data-kay')], this.getAttribute('data-coinCurrency'));
 
-    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureency], purseObjs[trigerActiveCureency]).toFixed(5);
+    getInputCurrency.value = calcValue(Number(setInputCurrency.value), currentCryptoValue[trigerActiveCureencyGet], purseObjs[trigerActiveCureencyGet]).toFixed(5);
 
-    exchangeRate.innerHTML = `Rate: <span>1 ${(coinsObjects[this.getAttribute('data-kay')].currency) ? coinsObjects[this.getAttribute('data-kay')].currency : null} = ${(currentCryptoValue[trigerActiveCureency]) ? currentCryptoValue[trigerActiveCureency] : ''} ${(trigerActiveCureency) ? trigerActiveCureency : ''}</span>`;
+    exchangeRate.innerHTML = `Rate: <span>1 ${(trigerActiveCureencyGetSet) ? trigerActiveCureencyGetSet : null} = ${(currentCryptoValue[trigerActiveCureencyGet]) ? currentCryptoValue[trigerActiveCureencyGet] : ''} ${(trigerActiveCureencyGet) ? trigerActiveCureencyGet : ''}</span>`;
   }));
 
   setInputCurrency.addEventListener('input', function () {
-    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureency], 0.05).toFixed(5);
+
+
+    this.value = this.value.replace(/[^0-9.]/g, '');
+    getInputCurrency.value = calcValue(Number(this.value), currentCryptoValue[trigerActiveCureencyGet], 0.05).toFixed(5);
   })
 
   async function setInfoCoin({ name, currency, srcImg }, passage) {
@@ -59,6 +63,8 @@ const calcCoin = coinsObjects => {
       setIconCurrency.src = srcImg;
       setCurrencyValueName.textContent = currency;
 
+      trigerActiveCureencyGetSet = currency;
+
       await requests(currency, new String(currencyCoins))
         .then(response => currentCryptoValue = response)
         .catch(err => console.log(err))
@@ -67,7 +73,7 @@ const calcCoin = coinsObjects => {
       getIconCurrency.src = srcImg;
       getCurrencyValueName.textContent = currency;
 
-      trigerActiveCureency = currency;
+      trigerActiveCureencyGet = currency;
     }
   }
   function setVariables(variableArray) {

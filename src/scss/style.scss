@@ -4,6 +4,71 @@
 @import "./section/header.scss";
 @import "./section/crypto-exchange.scss";
 @import "./section/order.scss";
+@import "./section/contancts.scss";
 
 @import "./section/footer.scss";
 
+.placeholder {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(20 74 117);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.placeholder.off {
+  animation: offLoader 1s forwards;
+}
+
+@keyframes offLoader {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+  }
+}
+
+.loaders {
+  padding: 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  counter-reset: list;
+  margin-bottom: -100px;
+  margin-right: -100px;
+  margin-left: -100px;
+}
+.loaders .loader {
+  position: relative;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: 100px;
+}
+
+
+// Loader 1
+.loader1 {
+  span {
+    display: block;
+    width: 70px;
+    height: 70px;
+    border: 3px solid;
+    border-radius: 50%;
+    border-color: transparent #fff #fff;
+    animation: cssload-spin 690ms infinite linear;
+    @keyframes cssload-spin {
+      100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+      }
+    }
+  }
+}

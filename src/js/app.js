@@ -12,5 +12,10 @@ window.addEventListener('DOMContentLoaded', function () {
     calcCoin(coinsObjects);
   } catch (e) { }
 
+
+  window.addEventListener('load', function () {
+    document.querySelector('.placeholder').classList.add('off')
+  });
+
 });
 
